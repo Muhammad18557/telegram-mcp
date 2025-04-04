@@ -1,0 +1,9 @@
+# Telegram Bridge dependencies
+telethon
+cryptg
+python-dotenv
+requests
+
+# MCP Server dependencies
+fastmcp
+python-dateutil

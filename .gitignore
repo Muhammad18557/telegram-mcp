@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+myenv/
+venv/
+ENV/
+env/
+.env
+
+# Telegram session files
+telegram-bridge/store/*.session
+telegram-bridge/store/*.session-journal
+
+# Database files with messages
+telegram-bridge/store/*.db
+telegram-bridge/store/*.db-shm
+telegram-bridge/store/*.db-wal
+
+# Logs
+logs/
+*.log
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Sensitive information
+telegram-bridge/.env
+*.key
+*.pem
+*.crt
+
+# User-specific files
+claude_desktop_config.json
+mcp.json
