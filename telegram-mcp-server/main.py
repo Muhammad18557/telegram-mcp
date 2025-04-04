@@ -1,3 +1,16 @@
+"""
+Telegram MCP Server
+
+The server uses FastMCP to expose Telegram functionality in a standardized way,
+with each tool implemented as a decorated function. This allows Claude to:
+1. Search contacts and chats
+2. Retrieve message history with optional context
+3. Send messages to individuals or groups
+
+The server connects to the local SQLite database maintained by the Telegram Bridge,
+and also communicates with the Bridge's HTTP API for sending messages.
+"""
+
 from typing import List, Dict, Any, Optional, Tuple
 from mcp.server.fastmcp import FastMCP
 from datetime import datetime

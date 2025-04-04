@@ -1,3 +1,20 @@
+"""
+This module implements data models and functions for retrieving and sending
+Telegram messages, managing chats, and working with contacts. 
+
+The module connects to a SQLite database that stores all Telegram messages and chat data,
+which is maintained by the Telegram Bridge. It also provides an HTTP client for sending
+messages via the Bridge's API endpoint.
+
+Main features:
+- Data models for messages, chats, contacts, and message context
+- Database access functions for retrieving messages, chats, and contacts
+- HTTP client for sending messages through the Telegram Bridge
+- Helper functions for displaying formatted messages and chats
+
+All database operations use parameterized queries to prevent SQL injection.
+"""
+
 import sqlite3
 import requests
 import json
@@ -12,6 +29,19 @@ TELEGRAM_API_BASE_URL = "http://localhost:8081/api"
 
 @dataclass
 class Message:
+    """
+    Represents a Telegram message with all its metadata.
+    
+    Attributes:
+        id: Unique message identifier
+        chat_id: ID of the chat the message belongs to
+        chat_title: Title of the chat (user name, group name, etc.)
+        sender_name: Name of the message sender
+        content: Text content of the message
+        timestamp: Date and time when the message was sent
+        is_from_me: Boolean indicating if the message was sent by the user
+        sender_id: ID of the message sender
+    """
     id: int
     chat_id: int
     chat_title: str
@@ -23,6 +53,16 @@ class Message:
 
 @dataclass
 class Chat:
+    """
+    Represents a Telegram chat (direct message, group, channel, etc.).
+    
+    Attributes:
+        id: Unique chat identifier
+        title: Name of the chat (user name, group name, etc.)
+        username: Optional Telegram username (without @)
+        type: Type of chat ('user', 'group', 'channel', 'supergroup')
+        last_message_time: Timestamp of the most recent message in the chat
+    """
     id: int
     title: str
     username: Optional[str]
@@ -31,12 +71,28 @@ class Chat:
 
 @dataclass
 class Contact:
+    """
+    Represents a Telegram contact.
+    
+    Attributes:
+        id: Unique contact identifier
+        username: Optional Telegram username (without @)
+        name: Display name of the contact
+    """
     id: int
     username: Optional[str]
     name: str
 
 @dataclass
 class MessageContext:
+    """
+    Provides context around a specific message.
+    
+    Attributes:
+        message: The target message
+        before: List of messages that came before the target message
+        after: List of messages that came after the target message
+    """
     message: Message
     before: List[Message]
     after: List[Message]
