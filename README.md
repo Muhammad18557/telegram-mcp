@@ -175,3 +175,16 @@ Claude can access the following tools to interact with Telegram:
 - **No Messages Loading**: After initial authentication, it can take several minutes for your message history to load, especially if you have many chats.
 
 For additional Claude Desktop integration troubleshooting, see the [MCP documentation](https://modelcontextprotocol.io/quickstart/server#claude-for-desktop-integration-issues).
+
+## Next Steps
+
+This project is actively being developed. Future planned features include:
+
+- **Rich Media Support**: Handle and display photos, videos, and other media types
+- **Message Threading**: Better visualization of conversation threads
+- **Message Editing**: Support for editing sent messages
+- **Web UI**: A simple web interface for configuration and monitoring
+- **Expanded Search**: More advanced search capabilities for finding specific messages or running analysis on say unread chats
+- **Improved Security**: Enhanced authentication and encryption for local data
+
+If you'd like to contribute to any of these features or suggest new ones, please check out our [CONTRIBUTING.md](CONTRIBUTING.md) guide.
