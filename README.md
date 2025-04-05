@@ -4,6 +4,8 @@ This is a Model Context Protocol (MCP) server for Telegram.
 
 With this you can search your personal Telegram messages, search your contacts, and send messages to either individuals or groups.
 
+![Telegram MCP example usage](example-use-2.png)
+
 It connects to your **personal Telegram account** directly via the Telegram API (using the [Telethon](https://github.com/LonamiWebs/Telethon) library). All your messages are stored locally in a SQLite database and only sent to an LLM (such as Claude) when the agent accesses them through tools (which you control).
 
 ## Installation
@@ -128,15 +130,24 @@ It connects to your **personal Telegram account** directly via the Telegram API 
 
 This application consists of two main components:
 
-1. **Python Telegram Bridge** (`telegram-bridge/`): A Python application that connects to Telegram's API, handles authentication, and stores message history in SQLite. It serves as the bridge between Telegram and the MCP server. Can real-time sync for latest messages. 
+1. **Python Telegram Bridge** (`telegram-bridge/`): A Python application that connects to Telegram's API, handles authentication, and stores message history in SQLite. It serves as the bridge between Telegram and the MCP server. Can real-time sync for latest messages. The bridge uses a modular architecture with:
+   - `api/`: Client and models for the Telegram API interface
+   - `database/`: SQLAlchemy ORM models and repositories for data access
+   - `server/`: FastAPI server for exposing bridge functionality
+   - `service.py`: Core service logic connecting components
 
-2. **Python MCP Server** (`telegram-mcp-server/`): A Python server implementing the Model Context Protocol (MCP), which provides standardized tools for Claude to interact with Telegram data and send/receive messages.
+2. **Python MCP Server** (`telegram-mcp-server/`): A Python server implementing the Model Context Protocol (MCP), which provides standardized tools for Claude to interact with Telegram data and send/receive messages. The MCP server now follows a modular package structure:
+   - `telegram/models.py`: Data classes for messages, chats, and contacts 
+   - `telegram/database.py`: Database operations using SQLAlchemy ORM
+   - `telegram/api.py`: API client for Telegram Bridge
+   - `telegram/display.py`: Formatting for message and chat output
 
 ### Data Storage
 
 - All message history is stored in a SQLite database within the `telegram-bridge/store/` directory
-- The database maintains tables for chats and messages
+- The database maintains tables for chats and messages managed through SQLAlchemy ORM
 - Messages are indexed for efficient searching and retrieval
+- All database access is through SQLAlchemy for type safety and query building
 
 ## Usage
 
