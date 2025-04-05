@@ -3,6 +3,10 @@ telethon
 cryptg
 python-dotenv
 requests
+sqlalchemy
+pydantic
+fastapi
+uvicorn
 
 # MCP Server dependencies
 fastmcp
