@@ -93,7 +93,7 @@ It connects to your **personal Telegram account** directly via the Telegram API 
    # To your actual BASE_DIR path (get it by running `pwd` in the telegram-mcp directory)
    ```
 
-   Then, configure the MCP server by creating a JSON configuration file with the following format:
+   Then, configure the MCP server by creating a JSON configuration file with the following format. Use the `BASE_DIR` from above.
 
    ```json
    {
@@ -101,7 +101,7 @@ It connects to your **personal Telegram account** directly via the Telegram API 
        "telegram": {
          "command": "/bin/bash",
          "args": [
-           "{{BASE_DIR}}/run_telegram_server.sh"  // BASE_DIR is the same as above
+           "{{BASE_DIR}}/run_telegram_server.sh"
          ]
        }
      }
