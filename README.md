@@ -20,7 +20,7 @@ It connects to your **personal Telegram account** directly via the Telegram API 
 1. **Clone this repository**
 
    ```bash
-   git clone https://github.com/yourusername/telegram-mcp.git
+   git clone https://github.com/Muhammad18557/telegram-mcp.git
    cd telegram-mcp
    ```
    Create a Python virtual environment and activate it:
